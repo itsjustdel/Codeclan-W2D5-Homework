@@ -5,4 +5,7 @@ class Bar:
                         "Wine" : 5.00
                         }
 
-    
+    def add_drink_to_tab(self, drink_name, room):
+        # check if bar has requested drink before adding to bar tab
+        if drink_name in self.drinks:
+            room.bar_tab.append(drink_name)

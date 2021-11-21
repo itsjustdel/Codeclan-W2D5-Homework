@@ -23,12 +23,9 @@ class Guest:
             # customer doesn't have enough money, return False
             # for an unsuccessful transaction
             return False
-
-    def cheer_loudly(self):
-        return "Woohoo!"
-
-    def add_drink_to_tab(self,bar, drink_name, room):
-
-        #customer requests drink, bar puts it on tab for room
-
-
+    
+    def room_has_fav_song(self, room, song):
+        if room.has_song(song):
+            return "Woohoo!"
+        else:
+            return "Sadness"

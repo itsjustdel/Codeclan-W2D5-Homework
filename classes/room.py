@@ -4,6 +4,7 @@ class Room:
         self.max_guests = max_guests
         self.guests = []
         self.songs = []
+        self.bar_tab = []
 
     def check_in_guest(self, guest):
         self.guests.append(guest)

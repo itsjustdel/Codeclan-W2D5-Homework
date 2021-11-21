@@ -2,7 +2,8 @@ import unittest
 from classes.guest import Guest
 from classes.venue import Venue
 from classes.room import Room
-from classes.venue import Bar
+from classes.song import Song
+from classes.bar import Bar
 
 
 class TestGuest(unittest.TestCase):
@@ -12,7 +13,9 @@ class TestGuest(unittest.TestCase):
         # so let's make it in setUp
         self.guest = Guest("Del", "Like Herod", 100)
         # create a venue instance to hold entry fee
-        self.venue = Venue(10)
+        self.venue = Venue(10,6,100.00)
+        # make a 
+        self.room = Room(0,6)
 
     def test_guest__name_is_Del(self):
         expected = "Del"
@@ -49,23 +52,25 @@ class TestGuest(unittest.TestCase):
         # Assert
         self.assertEqual(actual, expected)
 
-    def test_guest__cheer_loudly(self):        
-        # Act
-        expected = "Woohoo!"
-        actual = self.guest.cheer_loudly()
+    def test_guest__room_has_fav_song_woohoo(self):
+        # Arrange
+        song = Song("Like Herod", "Mogwai", 6.5)
+        self.room.add_song_to_room(song)
 
-        # Assert
+        # Act        
+        expected = "Woohoo!"
+        actual = self.guest.room_has_fav_song(self.room, song)
         self.assertEqual(actual, expected)
 
     def test_guest__add_drink_to_tab(self):
         # Arrange
         # make a new bar for this test
-        bar = Bar()       
-        # and a room
-        room = Room()
+        bar = Bar()        
         # Act
-        self.guest.add_drink_to_tab(bar, "Pina Colada", room)
+        bar.add_drink_to_tab("Pina Colada", self.room)
 
+        expected = 1
+        actual = len ( self.room.bar_tab)
 
         # Assert
         self.assertEqual(actual, expected)
